@@ -16,7 +16,7 @@ router.use('/users', usersRouter)
 
 // TODO: ENDPOINT =  /api/ ----  /api/hash
 router.get('/', (req, res) => {
-     res.json({api: "Hello you are at the root!"})
+     res.json({api: "Hello you are at the root of the api!"})
 })
 router.post('/hash', (req, res) => {
      const password = req.body.password;

@@ -13,6 +13,7 @@ router.post('/register', (req, res) => {
 
           db.add(newUser)
           .then(saved => {
+               console.log(saved)
                res.status(201).json(saved)
           })
           .catch(error => {
@@ -24,25 +25,21 @@ router.post('/register', (req, res) => {
 
 //TODO: ENDPOINT = /api/auth/login
 router.post('/login', (req, res) => {
-     const username = req.body.username;
-     const password = req.body.password;
+     let username = req.body.username
 
-     if(username && password){
-          db.findBy(username)
-          .first()
-          .then(response => {
-               if(response && bcrypt.compareSync(password, response.password)){
-                    res.status(201).json({message: `Welcome ${response.username}`})
-               } else {
-                    res.status(401).json({message: "Invalid credentials"})
-               }
-          })
-          .catch(error => {
-               res.status(500).json({message: "Unable to login, please try again later"})
-          })
-     } else {
-          res.status(401).json({message: "Please provide valid credentials"})
-     }
+     db.findBy({username})
+     .first()
+     .then(response => {
+          if(response && bcrypt.compareSync(req.body.password, response.password)){
+               res.status(200).json({message: `Welcome ${response.username}`})
+          }
+          else {
+               res.status(401).json({message: 'Invalid credentials'})
+          }
+     })
+     .catch(error => {
+          res.status(500).json(error)
+     })
 })
 
 

@@ -10,7 +10,7 @@ module.exports = {
 //* FIND : get all users id/username 
 function find(){
      return db('users')
-     .select('id', 'username')
+     .select('id', 'username', 'password')
 }
 
 //* FINDBY : get users 
@@ -21,9 +21,9 @@ function findBy(filter){
 
 //* ADD : post new user 
 function add(user){
-     return db('user')
+     return db('users')
      .insert(user, 'id')
-     .then(([id]) => findBy(id))
+     // .then(([id]) => findBy(id))
 }
 
 //* FINDBYID : get by user's id

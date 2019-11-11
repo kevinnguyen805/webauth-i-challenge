@@ -3,11 +3,10 @@ const db = require('../users/usersModel.js')
 
 module.exports = (req, res, next) => {
      // read the username, password from header not body so it works on GET
-     let username = req.headers.username
-     let password = req.headers.password
+     let { username, password } = req.headers
 
      if(username && password){
-          db.findBy(username)
+          db.findBy({username})
           .first()
           .then(response => {
                if(response && bcrypt.compareSync(password, response.password)){

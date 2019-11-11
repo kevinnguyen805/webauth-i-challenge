@@ -8,8 +8,5 @@ configureMiddleware(server);
 
 server.use('/api', apiRouter);
 
-server.get('/', (req, res) => {
-     res.send("Hello you are at the root")
-})
 
 module.exports = server;

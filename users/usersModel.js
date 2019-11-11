@@ -7,13 +7,11 @@ module.exports = {
      findById
 }
 
-
 //* FIND : get all users id/username 
 function find(){
      return db('users')
      .select('id', 'username')
 }
-
 
 //* FINDBY : get users 
 function findBy(filter){
@@ -21,14 +19,12 @@ function findBy(filter){
      .where(filter)
 }
 
-
 //* ADD : post new user 
 function add(user){
      return db('user')
      .insert(user, 'id')
      .then(([id]) => findBy(id))
 }
-
 
 //* FINDBYID : get by user's id
 function findById(id){

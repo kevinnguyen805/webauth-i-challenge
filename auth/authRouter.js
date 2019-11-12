@@ -11,6 +11,7 @@ router.post('/register', (req, res) => {
 
      db.add(newUser)
      .then(response => {
+          req.session.username = response.username
           res.status(201).json(response)
      })
      .catch(error => {
@@ -26,6 +27,7 @@ router.post('/login', (req, res) => {
           .first()
           .then(response => {
                if(response && bcrypt.compareSync(password, response.password)){
+                    req.session.username = response.username
                     res.status(201).json({message: `Welcome ${response.username}!`})
                }
                else{

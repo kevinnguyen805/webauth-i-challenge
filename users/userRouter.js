@@ -4,7 +4,7 @@ const db = require('./userModel.js')
 const authMiddleware = require('../auth/authMiddleware.js')
 
 
-router.get("/", (req, res) => {
+router.get("/", authMiddleware, (req, res) => {
   db.find()
     .then(response => {
       res.status(201).json(response);

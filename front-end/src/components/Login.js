@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import {Route, NavLink} from 'react-router-dom'
 
 
 function Login(props){
@@ -27,27 +26,29 @@ function Login(props){
 
      }
 
-     return(
-          <div>
-         
+     return (
+       <div>
+         <h1>Welcome to the Login page</h1>
 
-               <form onSubmit={handleSubmit}>
-                    <input 
-                    type="text"
-                    name="username"
-                    value={credentials.username}
-                    onChange={handleChange} />
-                    
-                    <input 
-                    type="text"
-                    name="password"
-                    value={credentials.password}
-                    onChange={handleChange} />
-                    
-                    <button>Submit</button>
-               </form>
-          </div>
-     )
+         <form onSubmit={handleSubmit}>
+           <input
+             type="text"
+             name="username"
+             value={credentials.username}
+             onChange={handleChange}
+           />
+
+           <input
+             type="password"
+             name="password"
+             value={credentials.password}
+             onChange={handleChange}
+           />
+
+           <button>Submit</button>
+         </form>
+       </div>
+     );
 }
 
 export default Login

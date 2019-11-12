@@ -19,17 +19,15 @@ function Users(props){
      },[])
 
 
-     return(
-          <div>
-               {
-                    data.map(item => {
-                         return(
-                              <div key={item.id}>{item.username}</div>
-                         )
-                    })
-               }
-          </div>
-     )
+     return (
+       <div>
+         <h1>Welcome to the Users page</h1>
+
+         {data.map(item => {
+           return <div key={item.id}>{item.username}</div>;
+         })}
+       </div>
+     );
 }
 
 export default Users

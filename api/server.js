@@ -2,6 +2,8 @@ const express = require('express')
 const configureMiddleware = require('./configureMiddleware.js')
 const apiRouter = require('./apiRouter.js')
 const session = require('express-session')
+const KnexSessionStorage = require('connect-session-knex')(session)
+const knexConnection = require('../data/db-config.js')
 
 const server = express();
 configureMiddleware(server);
@@ -15,7 +17,14 @@ const sessionConfiguration = {
           httpOnly: true
      },
      resave: false, 
-     saveUninitialized: true
+     saveUninitialized: true,
+     store: new KnexSessionStorage({
+          knex: knexConnection,
+          clearInterval: 1000 * 60 * 10,
+          tablename:"user_sessions",
+          sidfieldname: "id",
+          createtable:true
+     })
 }
 
 server.use(session(sessionConfiguration))
